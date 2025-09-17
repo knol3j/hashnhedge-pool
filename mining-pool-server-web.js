@@ -1,5 +1,3 @@
-javascript
-
 // mining-pool-server-web.js
 const express = require('express');
 const cors = require('cors');
@@ -24,17 +22,37 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 // Your existing mining pool code here...
 // [Copy all the code from mining-pool-server.js but update the following:]
 
-// Load deployment from environment variable in production
-if (IS_PRODUCTION) {
+// Load deployment configuration
+let deployment;
+try {
+    if (IS_PRODUCTION) {
+        deployment = {
+            mintAddress: process.env.MINT_ADDRESS,
+            tokenAccount: process.env.TOKEN_ACCOUNT,
+            mintAuthority: process.env.MINT_AUTHORITY,
+            keypair: JSON.parse(process.env.KEYPAIR_SECRET || '[]')
+        };
+    } else {
+        // Local development
+        if (fs.existsSync('hnh-deployment.json')) {
+            deployment = JSON.parse(fs.readFileSync('hnh-deployment.json'));
+        } else {
+            deployment = {
+                mintAddress: "placeholder-mint-address",
+                tokenAccount: "placeholder-token-account",
+                mintAuthority: "placeholder-mint-authority",
+                keypair: []
+            };
+        }
+    }
+} catch (error) {
+    console.log('Warning: Could not load deployment config, using defaults');
     deployment = {
-        mintAddress: process.env.MINT_ADDRESS,
-        tokenAccount: process.env.TOKEN_ACCOUNT,
-        mintAuthority: process.env.MINT_AUTHORITY,
-        keypair: JSON.parse(process.env.KEYPAIR_SECRET || '[]')
+        mintAddress: "placeholder-mint-address",
+        tokenAccount: "placeholder-token-account",
+        mintAuthority: "placeholder-mint-authority",
+        keypair: []
     };
-} else {
-    // Local development
-    deployment = JSON.parse(fs.readFileSync('hnh-deployment.json'));
 }
 
 // Add a homepage route
