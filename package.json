@@ -4,8 +4,7 @@
   "description": "HashNHedge Mining Pool",
   "main": "mining-pool-server-web.js",
   "scripts": {
-    "start": "node mining-pool-server-web.js",
-    "dev": "node mining-pool-server.js"
+    "start": "node mining-pool-server-web.js"
   },
   "engines": {
     "node": ">=14.0.0"

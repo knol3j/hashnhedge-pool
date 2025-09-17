@@ -1,0 +1,4 @@
+node_modules/
+hnh-deployment.json
+miners-backup.json
+.env
