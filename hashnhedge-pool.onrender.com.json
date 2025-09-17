@@ -1,0 +1,1 @@
+{"message":"HashNHedge Mining Pool API","version":"1.0.0","website":"https://hashnhedge.com","documentation":"https://hashnhedge.com/whitepaper","endpoints":{"stats":"/api/stats","connect":"POST /api/miner/connect","submit":"POST /api/miner/submit-share"}}
