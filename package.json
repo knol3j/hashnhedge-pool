@@ -1,12 +1,14 @@
 {
-  "name": "hashnhedge",
+  "name": "hashnhedge-pool",
   "version": "1.0.0",
-  "description": "HashNHedge - Decentralized GPU Computing Network",
-  "main": "index.html",
+  "description": "HashNHedge Mining Pool Server with Security Dashboard",
+  "main": "server.js",
   "scripts": {
-    "start": "npx http-server -p 8080",
-    "build": "echo 'No build step required for static site'",
-    "deploy": "echo 'Deploy to your hosting provider'"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "static": "npx http-server -p 8080",
+    "build": "echo 'Backend service - no build required'",
+    "deploy": "echo 'Deploy to Render'"
   },
   "repository": {
     "type": "git",
